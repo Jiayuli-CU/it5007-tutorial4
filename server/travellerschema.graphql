@@ -5,22 +5,37 @@ type Ticket {
 	_id: ID!
 	id: Int!
 	name: String!
-	phone: Int!
+	phone: String!
+	seat: Int!
 	bookingTime: GraphQLDate!
+}
+
+type BlacklistTraveller {
+	_id: ID!
+	name: String!
+	phone: String!
 }
 
 input InputTicket {
 	name: String!
-	phone: Int!
+	phone: String!
+	seat: Int!
 	bookingTime: GraphQLDate!
+}
+
+input InputBlacklist {
+	name: String!
+	phone: String!
 }
 
 type Query {
 	listTravellers:[Ticket]!
+	listBlacklistTravellers:[BlacklistTraveller!]
 }
 
 type Mutation {
 	addTraveller(ticket: InputTicket!): Ticket!
 	deleteTraveller(travellername: String!): Boolean!
+	blacklistTraveller(ticket: InputBlacklist!): BlacklistTraveller!
 }
 
